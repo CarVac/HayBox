@@ -127,7 +127,8 @@ void GamecubeBackend::SendReport() {
         _data.report.left = _outputs.triggerLAnalog + 31;
         _data.report.right = _outputs.triggerRAnalog + 31;
     } else {
-        if(loopTime > minLoop+(minLoop >> 1)) {//if the loop time is 50% longer than expected
+        //if the loop time is greater than 150% expected or lesser than 75% expected
+        if(loopTime > minLoop + (minLoop >> 1) || loopTime < minLoop - (minLoop >> 2)) {
             /*
             Serial.println("Loop time too long?");
             Serial.print("Loop time: ");
